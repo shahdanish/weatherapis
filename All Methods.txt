@@ -1,0 +1,17 @@
+Sure, here are the methods defined in the provided code:
+
+index(): This method is associated with the root URL ("/") and returns a simple string "Weather App" as the response.
+
+get_weather(): This method is associated with the URL "/weather" and accepts a POST request. It retrieves weather information for a city based on the city name provided in the request form data. The weather information includes city name, current temperature in Celsius, weather description, relative humidity, atmospheric pressure in millibars, and wind speed in kilometers per hour. It returns the weather information as a JSON response.
+
+get_location_key(city_name): This is a helper function that takes a city name as input and retrieves the location key (unique identifier) for that city from the AccuWeather API. It returns the location key as a string.
+
+get_weather_data(location_key): This is a helper function that takes a location key as input and retrieves the current weather data for that location from the AccuWeather API. It extracts relevant weather information from the API response, such as temperature, weather description, humidity, pressure, and wind speed. It returns the weather information as a dictionary.
+
+get_countries_info(): This method is associated with the URL "/countries" and accepts a GET request. It retrieves countries information based on the query string provided in the request parameters. The countries information includes country name, country code, and country location key. It returns the countries information as a JSON response.
+
+get_countries_data(query): This is a helper function that takes a query string as input and retrieves countries data from the AccuWeather API based on the query string. It extracts relevant country information from the API response, such as country name, country code, and country location key. It returns the countries information as a list of dictionaries.
+
+get_cities_info(): This method is associated with the URL "/cities" and accepts a GET request. It retrieves cities information based on the query string provided in the request parameters. The cities information includes city name, city key, and country name. It returns the cities information as a JSON response.
+
+get_cities_data(query): This is a helper function that takes a query string as input and retrieves cities data from the AccuWeather API based on the query string. It extracts relevant city information from the API response, such as city name, city key, and country name. It returns the cities information as a list of dictionaries.

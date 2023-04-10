@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather API</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            // Initialize the autocomplete input box
+            $( "#city_name" ).autocomplete({
+                source: function( request, response ) {
+                    // Use jQuery Ajax to fetch city suggestions from AccuWeather's API
+                    $.ajax({
+                        url: "https://dataservice.accuweather.com/locations/v1/cities/autocomplete",
+                        dataType: "json",
+                        data: {
+                            apikey: "WuyjMmcckuGC6uGURGq3Avg10fps4DyW", // Replace with your AccuWeather API key
+                            q: request.term
+                        },
+                        success: function( data ) {
+                            response( data );
+                        }
+                    });
+                },
+                minLength: 3, // Minimum characters required to start autocomplete
+            });
+        } );
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Weather API</h1>
+        <form action="/weather" method="post" class="mt-4">
+            <div class="form-group">
+                <label for="city_name">City Name:</label>
+                <input type="text" id="city_name" name="city_name" required class="form-control">
+            </div>
+            <button type="submit" class="btn btn-primary">Get Weather</button>
+        </form>
+    </div>
+</body>
+</html>

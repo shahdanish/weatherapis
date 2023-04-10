@@ -1,0 +1,224 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "version": "1.0",
+      "title": "Weather App API",
+      "description": "API for getting weather information for cities using AccuWeather API."
+    },
+    "basePath": "/",
+    "schemes": [
+      "http",
+      "https"
+    ],
+    "paths": {
+      "/weather": {
+        "post": {
+          "summary": "Get weather information for a city",
+          "parameters": [
+            {
+              "name": "city_name",
+              "in": "formData",
+              "type": "string",
+              "required": true,
+              "description": "Name of the city for which weather information is required."
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "Weather information for the city.",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "city": {
+                    "type": "string",
+                    "description": "City name"
+                  },
+                  "temperature": {
+                    "type": "number",
+                    "description": "Current temperature in Celsius"
+                  },
+                  "description": {
+                    "type": "string",
+                    "description": "Weather description"
+                  },
+                  "humidity": {
+                    "type": "number",
+                    "description": "Relative humidity"
+                  },
+                  "pressure": {
+                    "type": "number",
+                    "description": "Atmospheric pressure in millibars"
+                  },
+                  "wind_speed": {
+                    "type": "number",
+                    "description": "Wind speed in kilometers per hour"
+                  }
+                }
+              }
+            },
+            "404": {
+              "description": "City not found",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "description": "Error message"
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Failed to get weather data",
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "error": {
+                    "type": "string",
+                    "description": "Error message"
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/cities": {
+        "get": {
+          "summary": "Get cities from AccuWeather API using autocomplete endpoint.",
+          "responses": {
+            "200": {
+              "description": "List of cities in JSON format with city key and country key.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "city_key": {
+                          "type": "string"
+                        },
+                        "city": {
+                          "type": "string"
+                        },
+                        "country_key": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Failed to fetch cities",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "parameters": [
+            {
+              "name": "query",
+              "in": "query",
+              "description": "The search query for cities.",
+              "required": true,
+              "schema": {
+                "type": "string"
+              }
+            }
+          ]
+        }
+      },
+      "/countries": {
+        "get": {
+          "summary": "Get countries from a hypothetical countries API.",
+          "responses": {
+            "200": {
+              "description": "List of countries in JSON format with country key, country code, and country name.",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "array",
+                    "items": {
+                      "type": "object",
+                      "properties": {
+                        "country_key": {
+                          "type": "string"
+                        },
+                        "country_code": {
+                          "type": "string"
+                        },
+                        "country_name": {
+                          "type": "string"
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "500": {
+              "description": "Failed to fetch countries",
+              "content": {
+                "application/json": {
+                  "schema": {
+                    "type": "object",
+                    "properties": {
+                      "error": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      },
+      "/weather_forecast_5days": {
+        "get": {
+          "summary": "Get 5-day daily forecasts",
+          "parameters": [
+            {
+              "name": "locationKey",
+              "in": "query",
+              "description": "Location key for the desired location",
+              "required": true,
+              "type": "string"
+            }
+          ],
+          "responses": {
+            "200": {
+              "description": "OK",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "400": {
+              "description": "Bad Request",
+              "schema": {
+                "type": "string"
+              }
+            },
+            "500": {
+              "description": "Internal Server Error",
+              "schema": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      }
+    }
+  }

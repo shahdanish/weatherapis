@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Weather Details</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.6.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-4">
+        <h1>Weather Details</h1>
+        <table class="table mt-4">
+            <tr>
+                <th>City</th>
+                <td>{{ city }}</td>
+            </tr>
+            <tr>
+                <th>Temperature</th>
+                <td>{{ temperature }} &#8451;</td>
+            </tr>
+            <tr>
+                <th>Weather Description</th>
+                <td>{{ description }}</td>
+            </tr>
+            <tr>
+                <th>Humidity</th>
+                <td>{{ humidity }}%</td>
+            </tr>
+            <tr>
+                <th>Pressure</th>
+                <td>{{ pressure }} hPa</td>
+            </tr>
+            <tr>
+                <th>Wind Speed</th>
+                <td>{{ wind_speed }} km/h</td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
